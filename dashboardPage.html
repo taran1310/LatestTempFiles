@@ -1,0 +1,349 @@
+<div ng-class="{toggled: test.openNav == true , '': test.openNav == false} " id="wrapper">
+        <div class="overlay"></div>
+
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a >
+                       Dashboard
+                    </a>
+                </li>
+                <li ng-hide="buyerFlagLocal" style="border-color: white;border: 1px;border-bottom: 1px solid #e3e3e3;border-radius: 4px;">
+                    <a style="cursor:pointer;">Create/View Agreement</a>
+                </li>
+                <li style="border-color: white;border: 1px;border-bottom: 1px solid #e3e3e3;border-radius: 4px;">
+                    <a style="cursor:pointer;">My Agreements</a>
+                </li>
+                <li style="border-color: white;border: 1px;border-bottom: 1px solid #e3e3e3;border-radius: 4px;">
+                    <a style="cursor:pointer;">Status</a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+<!--<div ui-view>   </div>-->
+
+<div>
+
+        <div id="page-content-wrapper">
+            <button type="button" ng-click="openNav1()" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-10">
+                            <div class="">
+
+    <div ng-hide="buyerFlagLocal" class="well form-horizontal" style="background-color: transparent;"  id="contact_form">
+<fieldset>
+
+<!-- Form Name -->
+<legend style="color: white;"><strong>Create Agreement</strong></legend>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label style="color: white;" class="col-md-4 control-label">Buyer Name</label>
+  <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+    <select name="state" ng-model="selectedBuyer" class="form-control selectpicker" ng-options="buyer.name for buyer in buyerList">
+
+    </select>
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label style="color: white;" class="col-md-4 control-label" >Seller Name</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+  <input name="last_name" ng-disabled="true"  ng-model="sellerName" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="well form-horizontal" style="background-color: transparent;">
+
+<div ng-repeat="article in articles">
+
+<div class="form-group">
+  <label style="color: white;" class="col-md-4 control-label" >Article Name</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+<span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+    <select name="state" ng-model="article.selectedArticleName" class="form-control selectpicker" ng-options="articleName.name for articleName in article.articleName">
+
+    </select>
+<!--
+  <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+  <input name="last_name" placeholder="Article Name" class="form-control"  type="text" >-->
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label style="color: white;" class="col-md-4 control-label" >Article Quantity</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+
+<span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+    <select name="state" ng-model="article.selectedArticleQty" class="form-control selectpicker" ng-options="articleQuantity.name for articleQuantity in article.articleQuantity">
+
+    </select>
+
+ <!-- <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+  <input name="last_name" placeholder="Article Quantity" class="form-control"  type="text" >-->
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label style="color: white;" class="col-md-4 control-label" >Article Price</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+
+<span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+    <select name="state" ng-model="article.selectedArticlePrice" class="form-control selectpicker" ng-options="articlePrice.name for articlePrice in article.articlePrice">
+
+    </select>
+
+ <!-- <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+  <input name="last_name" placeholder="Article Price" class="form-control"  type="text" ng-model="articlePrice">-->
+    </div>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-sm-4 control-label"></label>
+  <div class="col-sm-4">
+    <button  class="btn btn-warning" ng-click="addAnotherArticle()">Add another</button>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label style="color: white;"  class="col-md-4 control-label">Address</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-home"></i></span>
+  <input name="address" placeholder="Address" class="form-control" type="text">
+    </div>
+  </div>
+</div>
+
+
+
+<!-- radio checks -->
+ <div class="form-group">
+                        <label style="color: white;"  class="col-md-4 control-label">Do you have hosting?</label>
+                        <div class="col-md-4">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="hosting" value="yes" /> Yes
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="hosting" value="no" /> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+<!-- Success message -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i  class="glyphicon glyphicon-thumbs-up"></i> Contract has been created.</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-sm-4 control-label"></label>
+  <div class="col-sm-4">
+    <button  class="btn btn-warning  col-sm-8" ng-click="sendContract()">Create Agreement</button>
+  </div>
+</div>
+
+</fieldset>
+</div>
+
+<!-- ending ng- hide-->
+       </div>
+<!-- starting ng- show buyer-->
+
+<div ng-show="buyerFlagLocal" class="well form-horizontal" style="background-color: transparent;" >
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend style="color: white;"><strong>View Agreement</strong></legend>
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label">Buyer Name</label>
+    <div class="col-md-4 selectContainer">
+      <div class="input-group">
+          <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+      <input name="last_name" ng-disabled="true"  ng-model="details.BUYER_INFO.USER_ID" class="form-control"  type="text">
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label" >Seller Name</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+    <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+    <input name="last_name" ng-disabled="true"  ng-model="details.SELLER_INFO.USER_ID" class="form-control"  type="text">
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input-->
+
+  <div class="well form-horizontal" style="background-color: transparent;">
+
+  <div ng-repeat="article in articleList">
+
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label" >Article Name</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+  <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+      <input name="last_name" ng-disabled="true"  ng-model="article.ARTICLE_DESC" class="form-control"  type="text">
+
+
+  <!--
+    <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+    <input name="last_name" placeholder="Article Name" class="form-control"  type="text" >-->
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label" >Article Quantity</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+
+  <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+      <input name="last_name" ng-disabled="true"  ng-model="article.ARTICLE_QTY" class="form-control"  type="text">
+
+   <!-- <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+    <input name="last_name" placeholder="Article Quantity" class="form-control"  type="text" >-->
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label" >Article Price</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+
+  <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-list"></i></span>
+      <input name="last_name" ng-disabled="true"  ng-model="article.ARTICALE_PRICE" class="form-control"  type="text">
+
+   <!-- <span class="input-group-addon" style="background-color:transparent;" ><i class="glyphicon glyphicon-user" style="color: white;"></i></span>
+    <input name="last_name" placeholder="Article Price" class="form-control"  type="text" ng-model="articlePrice">-->
+      </div>
+    </div>
+  </div>
+
+
+<!--  <div class="form-group">
+    <label class="col-sm-4 control-label"></label>
+    <div class="col-sm-4">
+      <button  class="btn btn-warning"  ng-click="addAnotherArticle()">Add another</button>
+    </div>
+  </div>-->
+
+  </div>
+
+  </div>
+
+
+
+  <div class="form-group">
+    <label style="color: white;"  class="col-md-4 control-label">Address</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon" style="background-color:transparent;"><i style="color: white;" class="glyphicon glyphicon-home"></i></span>
+    <input name="address" placeholder="Address" class="form-control" type="text">
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- radio checks -->
+   <div class="form-group">
+                          <label style="color: white;"  class="col-md-4 control-label">Do you have hosting?</label>
+                          <div class="col-md-4">
+                              <div class="radio">
+                                  <label>
+                                      <input type="radio" name="hosting" value="yes" /> Yes
+                                  </label>
+                              </div>
+                              <div class="radio">
+                                  <label>
+                                      <input type="radio" name="hosting" value="no" /> No
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+
+
+
+  <!-- Success message -->
+  <div class="alert alert-success" role="alert" id="success_message">Success <i  class="glyphicon glyphicon-thumbs-up"></i> Contract has been created.</div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-sm-4 control-label"></label>
+    <div class="col-sm-4">
+      <button  class="btn btn-warning  col-sm-8" ng-click="approveContract()">Approve Agreement</button>
+    </div>
+  </div>
+
+  </fieldset>
+
+</div>
+
+
+<!--ending ng-show buyer-->
+
+</div>
+    </div><!-- /.container -->
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
